@@ -1,4 +1,4 @@
-# DineDesk ΓÇö DevSecOps Access Control
+# DineDesk — DevSecOps Access Control
 
 ## 1. Project Overview
 
