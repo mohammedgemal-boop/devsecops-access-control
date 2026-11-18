@@ -1,0 +1,34 @@
+
+> devsecops-access-control@1.0.0 test
+> jest --runInBand
+
+  console.error
+    Γùç injected env (1) from .env
+
+    [0m [90m 1 |[39m
+    [31m[1m>[22m[39m[90m 2 |[39m require([32m"dotenv"[39m)[33m.[39mconfig()[33m;[39m
+     [90m   |[39m                   [31m[1m^[22m[39m
+     [90m 3 |[39m
+     [90m 4 |[39m [36mfunction[39m loadConfig() {
+     [90m 5 |[39m   [36mconst[39m required [33m=[39m [[0m
+
+      at W (node_modules/dotenv/dist/index.cjs:6:151)
+      at Object.M [as configDotenv] (node_modules/dotenv/dist/index.cjs:6:1119)
+      at Object.Y [as config] (node_modules/dotenv/dist/index.cjs:6:1226)
+      at Object.config (src/config/config.js:2:19)
+      at Object.require (src/routes/auth.js:7:16)
+      at Object.require (src/app.js:4:20)
+      at Object.require (tests/security.test.js:7:13)
+
+PASS tests/security.test.js
+  DineDesk Security Tests
+    ΓêÜ Health endpoint should respond successfully (77 ms)
+    ΓêÜ Orders API should reject missing authentication (10 ms)
+    ΓêÜ Login should reject an incorrect password (370 ms)
+    ΓêÜ Login should accept valid credentials (280 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        3.568 s, estimated 14 s
+Ran all test suites.

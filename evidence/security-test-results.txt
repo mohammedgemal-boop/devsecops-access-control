@@ -1,0 +1,15 @@
+DINEDESK — SECURITY TEST EVIDENCE
+Date: 18 November 2026
+
+1. Bole Manager sees only Bole orders: PASS
+2. Piassa Manager sees only Piassa orders: PASS
+3. Chain Administrator sees all four orders: PASS
+4. Cross-branch access denied: PASS (403)
+5. Invalid password rejected: PASS (401)
+6. Missing authentication rejected: PASS (401)
+7. Waiter cannot create orders: PASS (403)
+
+API health endpoint: Verified
+API port: 4000
+
+All seven recorded security tests passed.
