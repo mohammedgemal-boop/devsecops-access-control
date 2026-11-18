@@ -1,69 +1,119 @@
-# DineDesk — DevSecOps Access Control
+# DineDesk ΓÇö DevSecOps Access Control
 
-## Project Overview
-DineDesk is a restaurant management API demonstrating
-secure authentication, role-based access control,
-and branch-level authorization.
+## 1. Project Overview
 
-## Technologies
+DineDesk is a restaurant management API developed to demonstrate secure authentication, role-based access control (RBAC), and branch-level authorization.
+
+The application protects restaurant operations by ensuring that users can only access resources and perform actions permitted by their assigned roles and branch permissions.
+
+## 2. Technologies Used
+
 - Node.js
 - Express.js
-- JWT Authentication
-- bcryptjs Password Hashing
-- Jest
-- Supertest
+- JSON Web Tokens (JWT)
+- bcryptjs for password hashing
+- Jest for automated testing
+- Supertest for API testing
 
-## Security Features
-1. Password hashing
-2. JWT authentication
-3. Role-based permissions
-4. Branch-level access control
-5. Protected API endpoints
-6. Input validation
-7. Unauthorized access protection
+## 3. Security Features
 
-## Demo Accounts
-All demo accounts use the assignment demo password:
-DineDeskDemo2026!
+The application implements the following security controls:
 
-- waiter.bole@dinedesk.test
-- cashier.bole@dinedesk.test
-- manager.bole@dinedesk.test
-- waiter.piassa@dinedesk.test
-- cashier.piassa@dinedesk.test
-- manager.piassa@dinedesk.test
-- admin@dinedesk.test
+1. **Password Hashing:** Uses bcryptjs to securely hash user passwords.
+2. **JWT Authentication:** Protects API endpoints using signed authentication tokens.
+3. **Role-Based Access Control:** Restricts operations according to user roles.
+4. **Branch-Level Authorization:** Prevents users from accessing unauthorized branch data.
+5. **Protected API Endpoints:** Requires authentication for restricted resources.
+6. **Input Validation:** Validates incoming request data.
+7. **Unauthorized Access Protection:** Rejects invalid credentials and unauthorized requests.
 
-## Running the Application
+## 4. Demo User Accounts
 
-Install dependencies:
+The application includes seven demonstration accounts:
 
+| User Role | Email |
+|---|---|
+| Bole Waiter | waiter.bole@dinedesk.test |
+| Bole Cashier | cashier.bole@dinedesk.test |
+| Bole Manager | manager.bole@dinedesk.test |
+| Piassa Waiter | waiter.piassa@dinedesk.test |
+| Piassa Cashier | cashier.piassa@dinedesk.test |
+| Piassa Manager | manager.piassa@dinedesk.test |
+| Chain Administrator | admin@dinedesk.test |
+
+Demo credentials are provided separately for local assignment testing.
+
+## 5. Installation and Execution
+
+### Install dependencies
+
+```bash
 npm install
+```
 
-Start the API:
+### Configure environment variables
 
+Create a local `.env` file using `.env.example` as a reference. Configure the required port and JWT settings.
+
+Never commit `.env` or production secrets to GitHub.
+
+### Start the application
+
+```bash
 npm start
+```
 
-Health endpoint:
+### API Health Check
+
+Open:
 
 http://localhost:4000/api/health
 
-## Security Test Evidence
+Expected response:
 
-See evidence/security-test-results.txt.
+```json
+{
+  "status": "DineDesk API running"
+}
+```
 
-Seven manual security checks were recorded:
-- Branch isolation
-- Administrator access
-- Cross-branch access denial
-- Invalid password rejection
-- Missing authentication rejection
-- Role permission enforcement
+## 6. Security Testing and Evidence
 
-## Important
-Demo credentials and secrets are for local assignment
-testing only. Never use them in production.
+Security testing was performed using manual API requests and automated Jest tests.
 
-## Conclusion
-The recorded security tests demonstrate the intended
-authentication, authorization, and branch-access controls.
+### Recorded Manual Security Tests
+
+1. Bole Manager sees only Bole orders ΓÇö PASS.
+2. Piassa Manager sees only Piassa orders ΓÇö PASS.
+3. Chain Administrator sees all four orders ΓÇö PASS.
+4. Cross-branch access denied ΓÇö PASS (403).
+5. Invalid password rejected ΓÇö PASS (401).
+6. Missing authentication rejected ΓÇö PASS (401).
+7. Waiter cannot create orders ΓÇö PASS (403).
+
+### Automated Test Results
+
+Jest automated testing recorded:
+
+- Test suites: 1 passed.
+- Tests: 4 passed.
+- Failed tests: 0.
+
+### Evidence Files
+
+- `evidence/security-test-results.txt`
+- `evidence/automated-test-results.txt`
+
+## 7. Important Security Considerations
+
+- Demo credentials are intended for local assignment testing only.
+- Never publish passwords, JWT secrets, or private environment variables.
+- Keep `.env` excluded through `.gitignore`.
+- Use strong, unique secrets in production.
+- Apply appropriate access controls before deploying the application.
+
+## 8. Conclusion
+
+The DineDesk project demonstrates the implementation of authentication, role-based permissions, and branch-level access control in a restaurant management API.
+
+The recorded manual and automated test results provide evidence of the implemented security controls and their expected behavior.
